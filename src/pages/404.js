@@ -10,7 +10,7 @@ const NotFoundPage = () => {
         className="object-cover w-full h-64 rounded-lg"
       />
 
-      <p class="mt-6 text-gray-500">
+      <p className="mt-6 text-gray-500">
         We can't find anything, try searching again.
       </p>
     </Layout>

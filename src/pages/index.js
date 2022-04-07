@@ -1,12 +1,16 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Layout from "../components/Layout";
 import Form from "../components/Form";
 import Schedule from "../components/Schedule";
+import Loader from "../components/Loader";
+import Img from "gatsby-image";
+import { graphql } from "gatsby";
 
-const IndexPage = () => {
+const IndexPage = ({ data }) => {
   const [scheduleData, setScheduleData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   return (
     <Layout>
@@ -14,29 +18,35 @@ const IndexPage = () => {
       <section className="text-gray-600 body-font">
         <div className="container flex flex-col items-center justify-center px-5 py-24 mx-auto">
           <div className="flex justify-center object-cover object-center w-5/6 mb-10 rounded lg:w-2/6 md:w-3/6">
-            <img
-              className="object-cover object-center rounded"
-              alt="DrupalCon Logo"
-              src="https://pbs.twimg.com/profile_images/857713875445264384/m2mohdgQ_400x400.jpg"
-              width="250px"
-              height="250px"
-            />
+            <a href="/">
+              <Img
+                className="object-cover object-center rounded"
+                alt="DrupalCon Logo"
+                fixed={data.file.childImageSharp.fixed}
+                width="250px"
+                height="250px"
+              />
+            </a>
           </div>
           <div className="w-full text-center lg:w-2/3">
             <h1 className="mb-4 text-3xl font-medium text-gray-900 title-font sm:text-4xl">
               Beautify Your DrupalCon Schedule
             </h1>
-            {!isLoading && (
+            {!(isLoading || isLoaded) && (
               <>
                 <p className="mb-8 leading-relaxed">
                   Grab the .ics URL from your "Subscribe to My Schedule" link on{" "}
-                  <a href="https://events.drupal.org/portland2022/schedule/mine/all">
+                  <a
+                    className="underline underline-offset-1"
+                    href="https://events.drupal.org/portland2022/schedule/mine/all"
+                  >
                     DrupalCon
                   </a>{" "}
                   and make it{" "}
-                  <span className="font-bold text-indigo-500">Beautiful.</span>
+                  <span className="font-bold text-indigo-500">beautiful.</span>
                 </p>
                 <Form
+                  setIsLoaded={setIsLoaded}
                   setIsLoading={setIsLoading}
                   setScheduleData={setScheduleData}
                 />
@@ -45,9 +55,8 @@ const IndexPage = () => {
                 </p>
               </>
             )}
-            {isLoading && (
-              <Schedule isLoading={isLoading} scheduleData={scheduleData} />
-            )}
+            {isLoading && <Loader />}
+            {isLoaded && <Schedule scheduleData={scheduleData} />}
           </div>
         </div>
       </section>
@@ -56,3 +65,16 @@ const IndexPage = () => {
 };
 
 export default IndexPage;
+
+export const query = graphql`
+  query IndexQuery {
+    file(relativePath: { eq: "drupalcon_logo_400x400.jpg" }) {
+      childImageSharp {
+        # Specify the image processing specifications right in the query.
+        fixed(width: 250, height: 250, quality: 100) {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
+  }
+`;

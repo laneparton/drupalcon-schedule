@@ -2,14 +2,10 @@ import React from "react";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 
-const Schedule = ({ isLoading, scheduleData }) => {
+const Schedule = ({ isLoaded, scheduleData }) => {
   dayjs.extend(customParseFormat);
+  let scheduleHead = Object.keys(scheduleData[0]);
 
-  let scheduleHead = [];
-
-  if (isLoading) {
-    scheduleHead = Object.keys(scheduleData[0]);
-  }
   return (
     <>
       <p className="mb-8 ">
@@ -19,10 +15,10 @@ const Schedule = ({ isLoading, scheduleData }) => {
         </a>{" "}
         if you'd like &#128515;
       </p>
-      <div class="flex flex-col">
-        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-            <div class="overflow-x-auto">
+      <div className="flex flex-col">
+        <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+            <div className="overflow-x-auto">
               <table className="table-fixed">
                 <thead className="border-b">
                   <tr>
@@ -37,31 +33,29 @@ const Schedule = ({ isLoading, scheduleData }) => {
                     ))}
                   </tr>
                 </thead>
-                {isLoading && (
-                  <tbody>
-                    {scheduleData?.map((item, index) => (
-                      <tr className="border-b" key={index}>
-                        {Object.keys(item).map((key) => {
-                          let returnVal = item[key];
-                          if (["startDate", "endDate"].includes(key)) {
-                            console.log(item[key]);
-                            //2022-04-25T15:00:00Z
-                            returnVal = dayjs(
-                              item[key],
-                              "YYYYMMDDTHHmmss"
-                            ).toString();
-                          }
-                          console.log(returnVal);
-                          return (
-                            <td className="px-6 py-4 text-sm font-light text-left text-gray-900 whitespace-nowrap ">
-                              {returnVal}
-                            </td>
-                          );
-                        })}
-                      </tr>
-                    ))}
-                  </tbody>
-                )}
+                <tbody>
+                  {scheduleData?.map((item, index) => (
+                    <tr className="border-b" key={index}>
+                      {Object.keys(item).map((key, index) => {
+                        let returnVal = item[key];
+                        if (["startDate", "endDate"].includes(key)) {
+                          returnVal = dayjs(
+                            item[key],
+                            "YYYYMMDDTHHmmss"
+                          ).toString();
+                        }
+                        return (
+                          <td
+                            key={index}
+                            className="px-6 py-4 text-sm font-light text-left text-gray-900 whitespace-nowrap "
+                          >
+                            {returnVal}
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  ))}
+                </tbody>
               </table>
             </div>
           </div>

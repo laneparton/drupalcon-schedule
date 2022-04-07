@@ -5,13 +5,13 @@ const Layout = ({ children }) => {
   return (
     <main className="flex flex-col justify-between h-screen">
       {children}
-      <footer class="text-gray-600 body-font">
-        <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
-          <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4sm:py-2 sm:mt-0 mt-4">
+      <footer className="text-gray-600 body-font">
+        <div className="container flex flex-col items-center px-5 py-8 mx-auto sm:flex-row">
+          <p className="mt-4 text-sm text-gray-500 sm:ml-4 sm:pl-4sm:py-2 sm:mt-0">
             Special thanks to:
             <a
               href="https://twitter.com/knyttneve"
-              class="text-gray-600 ml-1"
+              className="ml-1 text-gray-600"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -20,37 +20,40 @@ const Layout = ({ children }) => {
             ,
             <a
               href="https://www.gatsbyjs.com/"
-              class="text-gray-600 ml-1"
+              className="ml-1 text-gray-600"
               rel="noopener noreferrer"
               target="_blank"
             >
               Gatsby
             </a>
           </p>
-          <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+          <span className="inline-flex justify-center mt-4 sm:ml-auto sm:mt-0 sm:justify-start">
             <a
-              class="ml-3 text-gray-500"
+              className="ml-3 text-gray-500"
               href="https://twitter.com/laneparton/"
             >
               <svg
                 fill="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                class="w-5 h-5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                className="w-5 h-5"
                 viewBox="0 0 24 24"
               >
                 <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
               </svg>
             </a>
-            <a class="ml-3 text-gray-500">
+            <a
+              className="ml-3 text-gray-500"
+              href="https://github.com/laneparton/drupalcon-schedule"
+            >
               <svg
                 role="img"
                 viewBox="0 0 24 24"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                class="w-5 h-5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                className="w-5 h-5"
               >
                 <title>GitHub</title>
                 <path

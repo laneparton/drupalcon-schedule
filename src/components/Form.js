@@ -1,6 +1,6 @@
 import * as React from "react";
 
-const Form = ({ setScheduleData, setIsLoading }) => {
+const Form = ({ setScheduleData, setIsLoading, setIsLoaded }) => {
   const [value, setValue] = React.useState({});
 
   // Listen to form changes and save them.
@@ -23,9 +23,11 @@ const Form = ({ setScheduleData, setIsLoading }) => {
       })
       .then((res) => res.json());
     setScheduleData(JSON.parse(response));
+    setIsLoading(true);
     setTimeout(() => {
-      setIsLoading(true);
-    }, 5000);
+      setIsLoading(false);
+      setIsLoaded(true);
+    }, 2000);
   }
 
   return (
@@ -35,7 +37,7 @@ const Form = ({ setScheduleData, setIsLoading }) => {
       action="/api/fetch-schedule"
       className="flex items-end justify-center w-full"
     >
-      <div className="relative w-2/4 mr-4 lg:w-full xl:w-1/2">
+      <div className="relative w-2/4 mr-4 text-left lg:w-full xl:w-2/3">
         <label className="text-sm leading-7 text-gray-600">Calendar URL</label>
         <input
           type="text"

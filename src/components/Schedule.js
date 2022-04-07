@@ -10,7 +10,13 @@ const Schedule = ({ isLoaded, scheduleData }) => {
     <>
       <p className="mb-8 ">
         Here ya' go! Feel free to{" "}
-        <a href="" className="underline underline-offset-1">
+        <a
+          href={`data:text/json;charset=utf-8,${encodeURIComponent(
+            JSON.stringify(scheduleData, null, "\t")
+          )}`}
+          download="DrupalCon_Schedule.json"
+          className="underline underline-offset-1"
+        >
           download the data
         </a>{" "}
         if you'd like &#128515;

@@ -13,6 +13,8 @@ const Form = ({ setScheduleData, setIsLoading, setIsLoaded }) => {
   async function onSubmit(e) {
     e.preventDefault();
 
+    setIsLoading(true);
+
     const response = await window
       .fetch(`/api/fetch-schedule`, {
         method: `POST`,
@@ -22,8 +24,8 @@ const Form = ({ setScheduleData, setIsLoading, setIsLoaded }) => {
         body: JSON.stringify(value),
       })
       .then((res) => res.json());
+
     setScheduleData(JSON.parse(response));
-    setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
       setIsLoaded(true);

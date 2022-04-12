@@ -7,7 +7,7 @@ import { graphql } from "gatsby";
 const AboutPage = ({ data }) => {
   return (
     <Layout>
-      <SEO title="Beautify Your Schedule" />
+      <SEO title="What is this?" />
       <section className="text-gray-600 body-font">
         <div className="container flex flex-col items-center justify-center px-5 py-24 mx-auto">
           <div className="flex justify-center object-cover object-center w-5/6 mb-10 rounded lg:w-2/6 md:w-3/6">

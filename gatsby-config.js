@@ -1,15 +1,13 @@
 module.exports = {
   siteMetadata: {
-    title: `new`,
-    siteUrl: `https://www.yourdomain.tld`,
+    title: "DrupalCon",
+    titleTemplate: "%s · DrupalCon",
+    description: "A basic tool to beautify your DrupalCon schedule.",
+    url: "https://drupalcon.laneparton.com", // No trailing slash allowed!
+    image: "/icon.png", // Path to the image placed in the 'static' folder, in the project's root directory.
+    twitterUsername: "@laneparton",
   },
   plugins: [
-    // {
-    //   resolve: "gatsby-plugin-google-analytics",
-    //   options: {
-    //     trackingId: "",
-    //   },
-    // },
     `gatsby-plugin-postcss`,
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sitemap",

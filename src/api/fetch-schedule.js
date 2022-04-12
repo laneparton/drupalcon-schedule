@@ -9,7 +9,9 @@ export default async function handler(req, res) {
 
   const scheduleFile = await axios.get(req.body.scheduleUrl);
   const icsData = await scheduleFile.data;
-  const data = icsToJson(icsData);
+  const data = icsToJson(icsData).sort((a, b) =>
+    a.startDate.localeCompare(b.startDate)
+  );
 
   res.status(200).json(JSON.stringify(data));
 }
